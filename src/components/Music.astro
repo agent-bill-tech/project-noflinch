@@ -1,0 +1,20 @@
+---
+import SongCard from './SongCard.astro';
+import SpotifyEmbed from './SpotifyEmbed.astro';
+import hudArtwork from '../assets/hud-artwork.png';
+import monsterArtwork from '../assets/monster-artwork.png';
+---
+
+<section id="music" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="font-display text-5xl md:text-6xl text-center mb-12 text-nf-cream">Music</h2>
+
+    <div class="flex flex-wrap justify-center gap-2">
+      <SongCard title="Hunt You Down" artwork={hudArtwork}>
+        <SpotifyEmbed trackId="7c5OstKuyJsReh6LfPBj9E" title="Hunt You Down" />
+      </SongCard>
+
+      <SongCard title="Monster" artwork={monsterArtwork} comingSoon={true} />
+    </div>
+  </div>
+</section>

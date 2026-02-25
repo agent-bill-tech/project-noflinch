@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import bandLogo from '../assets/band-logo.png';
+import bandPhoto from '../assets/band-photo-1.png';
+---
+
+<section class="relative h-screen w-full overflow-hidden">
+  <!-- Video background (desktop only) -->
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    poster="/video/hud-loop-poster.jpg"
+    class="hidden md:block absolute inset-0 w-full h-full object-cover"
+  >
+    <source src="/video/hud-loop.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Static image background (mobile) -->
+  <div class="md:hidden absolute inset-0">
+    <Image
+      src={bandPhoto}
+      alt=""
+      width={800}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+  </div>
+
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-nf-dark/40"></div>
+
+  <!-- Bottom gradient for seamless transition -->
+  <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-nf-dark to-transparent"></div>
+
+  <!-- Centered logo -->
+  <div class="relative z-10 flex items-center justify-center h-full px-6">
+    <Image
+      src={bandLogo}
+      alt="No Flinch"
+      width={500}
+      class="w-[60vw] max-w-[500px] drop-shadow-2xl"
+      loading="eager"
+    />
+  </div>
+</section>

@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import bandLogo from '../assets/band-logo.png';
+---
+
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#" aria-label="No Flinch — Home">
+      <Image
+        src={bandLogo}
+        alt="No Flinch"
+        width={120}
+        class="h-8 w-auto"
+      />
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#music" class="font-display text-lg tracking-wider text-nf-cream hover:text-nf-accent transition-colors">Music</a>
+      <a href="#about" class="font-display text-lg tracking-wider text-nf-cream hover:text-nf-accent transition-colors">About</a>
+      <a href="#contact" class="font-display text-lg tracking-wider text-nf-cream hover:text-nf-accent transition-colors">Contact</a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="menu-toggle"
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <span class="block w-6 h-0.5 bg-nf-cream transition-transform duration-300" id="bar1"></span>
+      <span class="block w-6 h-0.5 bg-nf-cream transition-opacity duration-300" id="bar2"></span>
+      <span class="block w-6 h-0.5 bg-nf-cream transition-transform duration-300" id="bar3"></span>
+    </button>
+  </div>
+
+  <!-- Mobile overlay menu -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 bg-nf-dark/95 flex flex-col items-center justify-center gap-10 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+  >
+    <a href="#music" class="mobile-link font-display text-4xl tracking-wider text-nf-cream hover:text-nf-accent transition-colors">Music</a>
+    <a href="#about" class="mobile-link font-display text-4xl tracking-wider text-nf-cream hover:text-nf-accent transition-colors">About</a>
+    <a href="#contact" class="mobile-link font-display text-4xl tracking-wider text-nf-cream hover:text-nf-accent transition-colors">Contact</a>
+  </div>
+</nav>
+
+<script>
+  // Nav scroll behavior
+  const nav = document.getElementById('main-nav')!;
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('bg-nf-charcoal/90', window.scrollY > 50);
+    nav.classList.toggle('backdrop-blur-sm', window.scrollY > 50);
+  });
+
+  // Mobile menu toggle
+  const toggle = document.getElementById('menu-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+  const bar1 = document.getElementById('bar1')!;
+  const bar2 = document.getElementById('bar2')!;
+  const bar3 = document.getElementById('bar3')!;
+  let open = false;
+
+  toggle.addEventListener('click', () => {
+    open = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    menu.classList.toggle('opacity-0', !open);
+    menu.classList.toggle('pointer-events-none', !open);
+    bar1.classList.toggle('rotate-45', open);
+    bar1.classList.toggle('translate-y-2', open);
+    bar2.classList.toggle('opacity-0', open);
+    bar3.classList.toggle('-rotate-45', open);
+    bar3.classList.toggle('-translate-y-2', open);
+  });
+
+  // Close menu on link click
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      open = false;
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.add('opacity-0', 'pointer-events-none');
+      bar1.classList.remove('rotate-45', 'translate-y-2');
+      bar2.classList.remove('opacity-0');
+      bar3.classList.remove('-rotate-45', '-translate-y-2');
+    });
+  });
+</script>

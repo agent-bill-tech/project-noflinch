@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import bandPhoto from '../assets/band-photo-2.png';
+---
+
+<section id="about" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="font-display text-5xl md:text-6xl text-center mb-12 text-nf-cream">About</h2>
+
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-nf-cream/90 text-lg leading-relaxed mb-6">
+          No Flinch is a 4-piece band forged from raw energy and unrelenting sound.
+          With roots in heavy rock and an edge that cuts through the noise,
+          the band delivers a visceral live experience that leaves no one standing still.
+        </p>
+        <p class="text-nf-cream/90 text-lg leading-relaxed mb-6">
+          Their debut single "Hunt You Down" set the tone — dark, driving, and impossible
+          to ignore. With their follow-up "Monster" on the horizon, No Flinch is just
+          getting started.
+        </p>
+        <p class="text-nf-warm-gray text-sm italic">
+          <!-- Band: Replace this placeholder bio with your own story -->
+        </p>
+      </div>
+
+      <div class="flex justify-center">
+        <Image
+          src={bandPhoto}
+          alt="No Flinch band photo"
+          width={600}
+          class="rounded-lg shadow-2xl rotate-1 hover:rotate-0 transition-transform duration-500"
+        />
+      </div>
+    </div>
+  </div>
+</section>

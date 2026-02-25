@@ -1,7 +1,28 @@
-node_modules/
-.env
-.env.local
-.env.*.local
+# Build output
 dist/
-.DS_Store
+.astro/
+
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
 *.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude / AI tools
+.claude/
